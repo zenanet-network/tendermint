@@ -279,6 +279,35 @@ func (cli *socketClient) ApplySnapshotChunkAsync(req types.RequestApplySnapshotC
 	return cli.queueRequest(types.ToRequestApplySnapshotChunk(req))
 }
 
+/*
+	side channel
+*/
+func (cli *socketClient) BeginSideBlockAsync(req types.RequestBeginSideBlock) *ReqRes {
+	return cli.queueRequest(&types.Request{Value: &types.Request_BeginSideBlock{BeginSideBlock: &req}})
+}
+
+func (cli *socketClient) BeginSideBlockSync(req types.RequestBeginSideBlock) (*types.ResponseBeginSideBlock, error) {
+	reqres := cli.BeginSideBlockAsync(req)
+	cli.FlushAsync()
+	if err := cli.Error(); err != nil {
+		return nil, err
+	}
+	return reqres.Response.GetBeginSideBlock(), nil
+}
+
+func (cli *socketClient) DeliverSideTxAsync(req types.RequestDeliverSideTx) *ReqRes {
+	return cli.queueRequest(&types.Request{Value: &types.Request_DeliverSideTx{DeliverSideTx: &req}})
+}
+
+func (cli *socketClient) DeliverSideTxSync(req types.RequestDeliverSideTx) (*types.ResponseDeliverSideTx, error) {
+	reqres := cli.DeliverSideTxAsync(req)
+	cli.FlushAsync()
+	if err := cli.Error(); err != nil {
+		return nil, err
+	}
+	return reqres.Response.GetDeliverSideTx(), cli.Error()
+}
+
 //----------------------------------------
 
 func (cli *socketClient) FlushSync() error {

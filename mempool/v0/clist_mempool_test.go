@@ -254,6 +254,12 @@ func TestMempoolUpdateDoesNotPanicWhenApplicationMissedTx(t *testing.T) {
 	mockClient.On("FlushAsync", mock.Anything).Return(abciclient.NewReqRes(abci.ToRequestFlush()), nil)
 	mockClient.On("SetResponseCallback", mock.MatchedBy(func(cb abciclient.Callback) bool { callback = cb; return true }))
 
+	// Add missing mock methods
+	mockClient.On("BeginSideBlockAsync", mock.Anything).Return(abciclient.NewReqRes(abci.ToRequestBeginSideBlock(abci.RequestBeginSideBlock{})), nil)
+	mockClient.On("BeginSideBlockSync", mock.Anything).Return(&abci.ResponseBeginSideBlock{}, nil)
+	mockClient.On("DeliverSideTxAsync", mock.Anything).Return(abciclient.NewReqRes(abci.ToRequestDeliverSideTx(abci.RequestDeliverSideTx{})), nil)
+	mockClient.On("DeliverSideTxSync", mock.Anything).Return(&abci.ResponseDeliverSideTx{}, nil)
+
 	app := kvstore.NewApplication()
 	cc := proxy.NewLocalClientCreator(app)
 	mp, cleanup, err := newMempoolWithAppMock(cc, mockClient)

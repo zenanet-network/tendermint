@@ -337,3 +337,54 @@ func newLocalReqRes(req *types.Request, res *types.Response) *ReqRes {
 	reqRes.Response = res
 	return reqRes
 }
+//
+// Side channel
+//
+
+func (app *localClient) DeliverSideTxAsync(params types.RequestDeliverSideTx) *ReqRes {
+	app.mtx.Lock()
+	defer app.mtx.Unlock()
+
+	res := app.Application.DeliverSideTx(params)
+	return app.callback(
+		types.ToRequestDeliverSideTx(params),
+		types.ToResponseDeliverSideTx(res),
+	)
+}
+
+func (app *localClient) BeginSideBlockAsync(req types.RequestBeginSideBlock) *ReqRes {
+	app.mtx.Lock()
+	defer app.mtx.Unlock()
+
+	res := app.Application.BeginSideBlock(req)
+	return app.callback(
+		types.ToRequestBeginSideBlock(req),
+		types.ToResponseBeginSideBlock(res),
+	)
+}
+
+func (app *localClient) DeliverSideTxSync(req types.RequestDeliverSideTx) (*types.ResponseDeliverSideTx, error) {
+	app.mtx.Lock()
+	defer app.mtx.Unlock()
+
+	res := app.Application.DeliverSideTx(req)
+	return &res, nil
+}
+
+func (app *localClient) BeginSideBlockSync(req types.RequestBeginSideBlock) (*types.ResponseBeginSideBlock, error) {
+	app.mtx.Lock()
+	defer app.mtx.Unlock()
+
+	res := app.Application.BeginSideBlock(req)
+	return &res, nil
+}
+
+// OnStart implements Service by doing nothing.
+func (app *localClient) OnStart() error {
+	return nil
+}
+
+// OnStop implements Service by doing nothing.
+func (app *localClient) OnStop() {
+	// Nothing to do here
+}

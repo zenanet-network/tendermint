@@ -284,3 +284,12 @@ func (app *PersistentKVStoreApplication) updateValidator(v types.ValidatorUpdate
 
 	return types.ResponseDeliverTx{Code: code.CodeTypeOK}
 }
+
+// BeginSideBlock starts a side block
+func (app *PersistentKVStoreApplication) BeginSideBlock(req types.RequestBeginSideBlock) types.ResponseBeginSideBlock {
+	return app.app.BeginSideBlock(req)
+}
+
+func (app *PersistentKVStoreApplication) DeliverSideTx(req types.RequestDeliverSideTx) types.ResponseDeliverSideTx {
+	return app.app.DeliverSideTx(req)
+}

@@ -102,7 +102,7 @@ RETRY_LOOP:
 		client := types.NewABCIApplicationClient(conn)
 		cli.conn = conn
 
-	ENSURE_CONNECTED:
+ENSURE_CONNECTED:
 		for {
 			_, err := client.Echo(context.Background(), &types.RequestEcho{Message: "hello"}, grpc.WaitForReady(true))
 			if err == nil {
@@ -416,4 +416,42 @@ func (cli *grpcClient) ApplySnapshotChunkSync(
 	params types.RequestApplySnapshotChunk) (*types.ResponseApplySnapshotChunk, error) {
 	reqres := cli.ApplySnapshotChunkAsync(params)
 	return cli.finishSyncCall(reqres).GetApplySnapshotChunk(), cli.Error()
+}
+
+func (cli *grpcClient) BeginSideBlockAsync(params types.RequestBeginSideBlock) *ReqRes {
+	req := params
+	res, err := cli.client.BeginSideBlock(context.Background(), &req, grpc.WaitForReady(true))
+	if err != nil {
+		cli.StopForError(err)
+		return nil
+	}
+	return cli.finishAsyncCall(&types.Request{Value: &types.Request_BeginSideBlock{BeginSideBlock: &req}}, &types.Response{Value: &types.Response_BeginSideBlock{BeginSideBlock: res}})
+}
+
+func (cli *grpcClient) BeginSideBlockSync(params types.RequestBeginSideBlock) (*types.ResponseBeginSideBlock, error) {
+	reqres := cli.BeginSideBlockAsync(params)
+	if reqres == nil {
+		return nil, cli.Error()
+	}
+	resp := reqres.Response.GetBeginSideBlock()
+	return resp, cli.Error()
+}
+
+func (cli *grpcClient) DeliverSideTxAsync(params types.RequestDeliverSideTx) *ReqRes {
+	req := params
+	res, err := cli.client.DeliverSideTx(context.Background(), &req, grpc.WaitForReady(true))
+	if err != nil {
+		cli.StopForError(err)
+		return nil
+	}
+	return cli.finishAsyncCall(&types.Request{Value: &types.Request_DeliverSideTx{DeliverSideTx: &req}}, &types.Response{Value: &types.Response_DeliverSideTx{DeliverSideTx: res}})
+}
+
+func (cli *grpcClient) DeliverSideTxSync(params types.RequestDeliverSideTx) (*types.ResponseDeliverSideTx, error) {
+	reqres := cli.DeliverSideTxAsync(params)
+	if reqres == nil {
+		return nil, cli.Error()
+	}
+	resp := reqres.Response.GetDeliverSideTx()
+	return resp, cli.Error()
 }

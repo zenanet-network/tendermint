@@ -11,7 +11,7 @@ import (
 	proto "github.com/gogo/protobuf/proto"
 	_ "github.com/gogo/protobuf/types"
 	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
-		golang_proto "github.com/golang/protobuf/proto"
+	golang_proto "github.com/golang/protobuf/proto"
 	crypto "github.com/tendermint/tendermint/proto/tendermint/crypto"
 	types1 "github.com/tendermint/tendermint/proto/tendermint/types"
 	grpc "google.golang.org/grpc"
@@ -5303,92 +5303,89 @@ func (this *RequestDeliverSideTx) Equal(that interface{}) bool {
 
 
 // 필요한 Equal 메서드 구현
-func (m *RequestListSnapshots) Equal(that interface{}) bool {
+func (this *RequestListSnapshots) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*RequestListSnapshots)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
-		return false
-	}
-	if !bytes.Equal(m.XXX_unrecognized, that1.XXX_unrecognized) {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
 	return true
 }
 
-func (m *RequestOfferSnapshot) Equal(that interface{}) bool {
+func (this *RequestOfferSnapshot) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*RequestOfferSnapshot)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
-	if !m.Snapshot.Equal(that1.Snapshot) {
+	if !this.Snapshot.Equal(that1.Snapshot) {
 		return false
 	}
-	if !bytes.Equal(m.AppHash, that1.AppHash) {
+	if !bytes.Equal(this.AppHash, that1.AppHash) {
 		return false
 	}
 	return true
 }
 
-func (m *RequestLoadSnapshotChunk) Equal(that interface{}) bool {
+func (this *RequestLoadSnapshotChunk) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*RequestLoadSnapshotChunk)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
-	if m.Height != that1.Height {
+	if this.Height != that1.Height {
 		return false
 	}
-	if m.Format != that1.Format {
+	if this.Format != that1.Format {
 		return false
 	}
-	if m.Chunk != that1.Chunk {
+	if this.Chunk != that1.Chunk {
 		return false
 	}
 	return true
 }
 
-func (m *RequestApplySnapshotChunk) Equal(that interface{}) bool {
+func (this *RequestApplySnapshotChunk) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*RequestApplySnapshotChunk)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
-	if m.Index != that1.Index {
+	if this.Index != that1.Index {
 		return false
 	}
-	if !bytes.Equal(m.Chunk, that1.Chunk) {
+	if !bytes.Equal(this.Chunk, that1.Chunk) {
 		return false
 	}
-	if m.Sender != that1.Sender {
+	if this.Sender != that1.Sender {
 		return false
 	}
 	return true
@@ -5948,155 +5945,155 @@ func (this *ResponseInitChain) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (m *ResponseListSnapshots) Equal(that interface{}) bool {
+func (this *ResponseListSnapshots) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*ResponseListSnapshots)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
-	if len(m.Snapshots) != len(that1.Snapshots) {
+	if len(this.Snapshots) != len(that1.Snapshots) {
 		return false
 	}
-	for i := range m.Snapshots {
-		if !m.Snapshots[i].Equal(that1.Snapshots[i]) {
+	for i := range this.Snapshots {
+		if !this.Snapshots[i].Equal(that1.Snapshots[i]) {
 			return false
 		}
 	}
 	return true
 }
 
-func (m *ResponseOfferSnapshot) Equal(that interface{}) bool {
+func (this *ResponseOfferSnapshot) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*ResponseOfferSnapshot)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
-	if m.Result != that1.Result {
+	if this.Result != that1.Result {
 		return false
 	}
 	return true
 }
 
-func (m *ResponseLoadSnapshotChunk) Equal(that interface{}) bool {
+func (this *ResponseLoadSnapshotChunk) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*ResponseLoadSnapshotChunk)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
-	if !bytes.Equal(m.Chunk, that1.Chunk) {
+	if !bytes.Equal(this.Chunk, that1.Chunk) {
 		return false
 	}
 	return true
 }
 
-func (m *ResponseApplySnapshotChunk) Equal(that interface{}) bool {
+func (this *ResponseApplySnapshotChunk) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*ResponseApplySnapshotChunk)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
-	if m.Result != that1.Result {
+	if this.Result != that1.Result {
 		return false
 	}
-	if len(m.RefetchChunks) != len(that1.RefetchChunks) {
+	if len(this.RefetchChunks) != len(that1.RefetchChunks) {
 		return false
 	}
-	for i := range m.RefetchChunks {
-		if m.RefetchChunks[i] != that1.RefetchChunks[i] {
+	for i := range this.RefetchChunks {
+		if this.RefetchChunks[i] != that1.RefetchChunks[i] {
 			return false
 		}
 	}
-	if len(m.RejectSenders) != len(that1.RejectSenders) {
+	if len(this.RejectSenders) != len(that1.RejectSenders) {
 		return false
 	}
-	for i := range m.RejectSenders {
-		if m.RejectSenders[i] != that1.RejectSenders[i] {
+	for i := range this.RejectSenders {
+		if this.RejectSenders[i] != that1.RejectSenders[i] {
 			return false
 		}
 	}
 	return true
 }
 
-func (m *Snapshot) Equal(that interface{}) bool {
+func (this *Snapshot) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*Snapshot)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
-	if m.Height != that1.Height {
+	if this.Height != that1.Height {
 		return false
 	}
-	if m.Format != that1.Format {
+	if this.Format != that1.Format {
 		return false
 	}
-	if m.Chunks != that1.Chunks {
+	if this.Chunks != that1.Chunks {
 		return false
 	}
-	if !bytes.Equal(m.Hash, that1.Hash) {
+	if !bytes.Equal(this.Hash, that1.Hash) {
 		return false
 	}
-	if !bytes.Equal(m.Metadata, that1.Metadata) {
+	if !bytes.Equal(this.Metadata, that1.Metadata) {
 		return false
 	}
 	return true
 }
 
 // EventAttribute에 Equal 메서드 추가
-func (m *EventAttribute) Equal(that interface{}) bool {
+func (this *EventAttribute) Equal(that interface{}) bool {
 	if that == nil {
-		return m == nil
+		return this == nil
 	}
 	that1, ok := that.(*EventAttribute)
 	if !ok {
 		return false
 	}
 	if that1 == nil {
-		return m == nil
-	} else if m == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
-	if !bytes.Equal(m.Key, that1.Key) {
+	if !bytes.Equal(this.Key, that1.Key) {
 		return false
 	}
-	if !bytes.Equal(m.Value, that1.Value) {
+	if !bytes.Equal(this.Value, that1.Value) {
 		return false
 	}
-	if m.Index != that1.Index {
+	if this.Index != that1.Index {
 		return false
 	}
 	return true
@@ -6139,7 +6136,11 @@ func (this *ResponseQuery) Equal(that interface{}) bool {
 	if !bytes.Equal(this.Value, that1.Value) {
 		return false
 	}
-	if !this.Proof.Equal(that1.Proof) {
+	if this.ProofOps != nil && that1.ProofOps != nil {
+		if !this.ProofOps.Equal(that1.ProofOps) {
+			return false
+		}
+	} else if this.ProofOps != nil || that1.ProofOps != nil {
 		return false
 	}
 	if this.Height != that1.Height {
@@ -12140,34 +12141,46 @@ func (m *ResponseCommit) Size() (n int) {
 	return n
 }
 func (m *ResponseBeginSideBlock) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Data)
-	if l > 0 {
-		n += 1 + l + sovTypes(uint64(l))
-	}
-	if m.RetainHeight != 0 {
-		n += 1 + sovTypes(uint64(m.RetainHeight))
-	}
-	return n
+    if m == nil {
+        return 0
+    }
+    var l int
+    _ = l
+    if len(m.Events) > 0 {
+        for _, e := range m.Events {
+            l = e.Size()
+            n += 1 + l + sovTypes(uint64(l))
+        }
+    }
+    if m.XXX_unrecognized != nil {
+        n += len(m.XXX_unrecognized)
+    }
+    return n
 }
 func (m *ResponseDeliverSideTx) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Data)
-	if l > 0 {
-		n += 1 + l + sovTypes(uint64(l))
-	}
-	if m.RetainHeight != 0 {
-		n += 1 + sovTypes(uint64(m.RetainHeight))
-	}
-	return n
+    if m == nil {
+        return 0
+    }
+    var l int
+    _ = l
+    if m.Code != 0 {
+        n += 1 + sovTypes(uint64(m.Code))
+    }
+    l = len(m.Codespace)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    if m.Result != 0 {
+        n += 1 + sovTypes(uint64(m.Result))
+    }
+    l = len(m.Data)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    if m.XXX_unrecognized != nil {
+        n += len(m.XXX_unrecognized)
+    }
+    return n
 }
 
 func (m *ResponseListSnapshots) Size() (n int) {
@@ -12281,11 +12294,11 @@ func (m *EvidenceParams) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.EvidenceParams != 0 {
-		n += 1 + sovTypes(uint64(m.EvidenceParams))
+	if m.MaxAge != 0 {
+		n += 1 + sovTypes(uint64(m.MaxAge))
 	}
-	if m.MaxGas != 0 {
-		n += 1 + sovTypes(uint64(m.MaxGas))
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -12296,14 +12309,14 @@ func (m *ValidatorParams) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Round != 0 {
-		n += 1 + sovTypes(uint64(m.Round))
-	}
-	if len(m.Votes) > 0 {
-		for _, e := range m.Votes {
-			l = e.Size()
+	if len(m.PubKeyTypes) > 0 {
+		for _, s := range m.PubKeyTypes {
+			l = len(s)
 			n += 1 + l + sovTypes(uint64(l))
 		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -12345,77 +12358,123 @@ func (m *Event) Size() (n int) {
 }
 
 func (m *Header) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Type)
-	if l > 0 {
-		n += 1 + l + sovTypes(uint64(l))
-	}
-	if len(m.Attributes) > 0 {
-		for _, e := range m.Attributes {
-			l = e.Size()
-			n += 1 + l + sovTypes(uint64(l))
-		}
-	}
-	return n
+    if m == nil {
+        return 0
+    }
+    var l int
+    _ = l
+    l = m.Version.Size()
+    n += 1 + l + sovTypes(uint64(l))
+    l = len(m.ChainID)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    if m.Height != 0 {
+        n += 1 + sovTypes(uint64(m.Height))
+    }
+    l = github_com_gogo_protobuf_types.SizeOfStdTime(m.Time)
+    n += 1 + l + sovTypes(uint64(l))
+    if m.NumTxs != 0 {
+        n += 1 + sovTypes(uint64(m.NumTxs))
+    }
+    if m.TotalTxs != 0 {
+        n += 1 + sovTypes(uint64(m.TotalTxs))
+    }
+    l = m.LastBlockId.Size()
+    n += 1 + l + sovTypes(uint64(l))
+    l = len(m.LastCommitHash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = len(m.DataHash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = len(m.ValidatorsHash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = len(m.NextValidatorsHash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = len(m.ConsensusHash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = len(m.AppHash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = len(m.LastResultsHash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = len(m.EvidenceHash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = len(m.ProposerAddress)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    if m.XXX_unrecognized != nil {
+        n += len(m.XXX_unrecognized)
+    }
+    return n
 }
 
 func (m *Version) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Type)
-	if l > 0 {
-		n += 1 + l + sovTypes(uint64(l))
-	}
-	if len(m.Attributes) > 0 {
-		for _, e := range m.Attributes {
-			l = e.Size()
-			n += 1 + l + sovTypes(uint64(l))
-		}
-	}
-	return n
+    if m == nil {
+        return 0
+    }
+    var l int
+    _ = l
+    if m.Block != 0 {
+        n += 1 + sovTypes(uint64(m.Block))
+    }
+    if m.App != 0 {
+        n += 1 + sovTypes(uint64(m.App))
+    }
+    if m.XXX_unrecognized != nil {
+        n += len(m.XXX_unrecognized)
+    }
+    return n
 }
 func (m *BlockID) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Type)
-	if l > 0 {
-		n += 1 + l + sovTypes(uint64(l))
-	}
-	if len(m.Attributes) > 0 {
-		for _, e := range m.Attributes {
-			l = e.Size()
-			n += 1 + l + sovTypes(uint64(l))
-		}
-	}
-	return n
+    if m == nil {
+        return 0
+    }
+    var l int
+    _ = l
+    l = len(m.Hash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = m.PartsHeader.Size()
+    n += 1 + l + sovTypes(uint64(l))
+    if m.XXX_unrecognized != nil {
+        n += len(m.XXX_unrecognized)
+    }
+    return n
 }
 func (m *PartSetHeader) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Type)
-	if l > 0 {
-		n += 1 + l + sovTypes(uint64(l))
-	}
-	if len(m.Attributes) > 0 {
-		for _, e := range m.Attributes {
-			l = e.Size()
-			n += 1 + l + sovTypes(uint64(l))
-		}
-	}
-	return n
+    if m == nil {
+        return 0
+    }
+    var l int
+    _ = l
+    if m.Total != 0 {
+        n += 1 + sovTypes(uint64(m.Total))
+    }
+    l = len(m.Hash)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    if m.XXX_unrecognized != nil {
+        n += len(m.XXX_unrecognized)
+    }
+    return n
 }
 
 func (m *EventAttribute) Size() (n int) {
@@ -12504,17 +12563,23 @@ func (m *VoteInfo) Size() (n int) {
 }
 
 func (m *PubKey) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.PubKey.Size()
-	n += 1 + l + sovTypes(uint64(l))
-	if m.PubKey {
-		n += 2
-	}
-	return n
+    if m == nil {
+        return 0
+    }
+    var l int
+    _ = l
+    l = len(m.Type)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    l = len(m.Data)
+    if l > 0 {
+        n += 1 + l + sovTypes(uint64(l))
+    }
+    if m.XXX_unrecognized != nil {
+        n += len(m.XXX_unrecognized)
+    }
+    return n
 }
 
 func (m *Evidence) Size() (n int) {
